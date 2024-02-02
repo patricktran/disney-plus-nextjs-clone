@@ -36,3 +36,11 @@ export type Movie = {
   vote_average: number;
   vote_count: number;
 };
+
+export type MovieDetail = Omit<Movie, "genre_ids"> & {
+  genres: Genre[];
+  runtime: number;
+  revenue: number;
+  status: string;
+  tagline: string;
+};

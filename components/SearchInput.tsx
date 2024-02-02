@@ -4,10 +4,11 @@ import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter, usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { useAction } from "next-safe-action/hooks";
 import { Form, FormControl, FormField, FormItem } from "./ui/form";
 import { Input } from "./ui/input";
 import { FormSearchFields, formSearchSchema } from "@/lib/forms";
-import { submitSearch } from "@/lib/actions";
+import { submitSearchAction } from "@/server/actions";
 
 function SearchInput() {
   //const router = useRouter();
@@ -35,6 +36,8 @@ function SearchInput() {
     //form.reset();
   }
   */
+
+  const { execute: submitSearch, status } = useAction(submitSearchAction);
 
   //calling a server action onSubmit
   return (

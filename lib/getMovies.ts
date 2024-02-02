@@ -1,4 +1,4 @@
-import { Genres, SearchResults } from "./types";
+import { Genres, SearchResults, MovieDetail } from "./types";
 
 const baseUrl = "https://api.themoviedb.org/3";
 type GenreId = string;
@@ -80,6 +80,8 @@ export function getGenres() {
   );
 }
 
-export function GetMovieDetail(id: number) {
-  //todo
+export function getMovieDetail(id: string) {
+  return fetchFromTMDB<MovieDetail>(
+    new URL(`${baseUrl}/movie/${id}?language=en-US`)
+  );
 }
