@@ -4,6 +4,7 @@ import { getImagePath } from "@/lib/utils";
 import BackgroundImage from "./components/BackgroundImage";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
+import VideoPlayer from "@/components/video-player";
 
 type Props = {
   params: {
@@ -13,7 +14,7 @@ type Props = {
 
 async function Detail({ params: { id } }: Props) {
   const details = await getMovieDetail(id);
-  console.log(details);
+  // console.log(details);
 
   const releaseYear = details.release_date?.split("-")?.[0];
   const genres = details.genres.map((g) => g.name);
@@ -54,6 +55,7 @@ async function Detail({ params: { id } }: Props) {
         <p className="max-w-xl text-xl text-gray-200 text-shadow shadow-gray-900">
           {details.overview}
         </p>
+        <VideoPlayer url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
       </div>
     </main>
   );
