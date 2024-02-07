@@ -1,10 +1,9 @@
-import React from "react";
+import Link from "next/link";
 import { getMovieDetail } from "@/lib/getMovies";
 import { getImagePath } from "@/lib/utils";
 import BackgroundImage from "./components/BackgroundImage";
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
-import VideoPlayer from "@/components/video-player";
 
 type Props = {
   params: {
@@ -14,7 +13,6 @@ type Props = {
 
 async function Detail({ params: { id } }: Props) {
   const details = await getMovieDetail(id);
-  // console.log(details);
 
   const releaseYear = details.release_date?.split("-")?.[0];
   const genres = details.genres.map((g) => g.name);
@@ -35,12 +33,14 @@ async function Detail({ params: { id } }: Props) {
           {genres.join(", ")}
         </p>
         <div className="pt-6 flex gap-6">
-          <Button
-            className="flex gap-1.5 items-center text-base font-light"
-            size={"lg"}
-          >
-            <Play fill="#000" /> PLAY
-          </Button>
+          <Link href={`/video/${id}`}>
+            <Button
+              className="flex gap-1.5 items-center text-base font-light"
+              size={"lg"}
+            >
+              <Play fill="#000" /> PLAY
+            </Button>
+          </Link>
           <Button
             className="flex gap-1.5 items-center text-base font-light border-white border-[1px] bg-black bg-opacity-35 hover:bg-black hover:bg-opacity-55"
             size={"lg"}
@@ -55,7 +55,6 @@ async function Detail({ params: { id } }: Props) {
         <p className="max-w-xl text-xl text-gray-200 text-shadow shadow-gray-900">
           {details.overview}
         </p>
-        <VideoPlayer url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
       </div>
     </main>
   );

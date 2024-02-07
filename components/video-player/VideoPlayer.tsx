@@ -1,31 +1,41 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import {
   Player as ShakaPlayer,
   polyfill as ShakaPolyfill,
   ui as ShakaUI,
   // @ts-ignore
 } from "shaka-player/dist/shaka-player.ui";
+import { cn } from "@/lib/utils";
+import useShowOverlayIdle from "./hooks/use-show-overlay-idle";
+import uiConfig from "./config/ui";
+import CreatePortal from "../CreatePortal";
+
 import "shaka-player/dist/controls.css";
 import "shaka-player-ui-controls/dist/main.css";
-
-import uiConfig from "./config/ui";
+import Loader from "../loader";
+import TitleBug from "./title-bug";
+import OverlayLoader from "../overlay-loader";
 
 type Props = {
   url: string;
-  title?: string;
-  onTitleBugClick?: () => void;
+  titleId: number;
+  title: string;
 };
 
-function VideoPlayer({ url, title, onTitleBugClick }: Props) {
-  const [isVisible, setIsVisible] = useState(false);
-  //const videoRef = useRef<HTMLVideoElement>(null);
+function VideoPlayer({ url, title, titleId }: Props) {
+  const [isPlayerLoaded, setIsPlayerLoaded] = useState(false);
+  /*const [videoElementRef, setVideoElementRef] = useState<
+    HTMLVideoElement | undefined
+  >(undefined);*/
   const containerRef = useRef<HTMLDivElement>(null);
   //const [player, setPlayer] = useState<ShakaPlayer>(null);
+  // placing inside useState instead of useRef because we want to trigger re-renders
+  const [spinnerContainerRef, setSpinnerContainerRef] =
+    useState<HTMLDivElement>();
   const [videoPaused, setVideoPaused] = useState(false);
   const [initOverlay, setInitOverlay] = useState(false);
-  const [audioOptionsShown, setAudioOptionsShown] = useState(false);
 
   /* useEffect(() => {
     if (isVisible) {
@@ -100,10 +110,14 @@ function VideoPlayer({ url, title, onTitleBugClick }: Props) {
   const onLoadedData = useCallback(() => {
     // add fake delay
     setTimeout(() => {
-      setIsVisible(true);
+      setIsPlayerLoaded(true);
       setInitOverlay(true);
     }, 500);
   }, []);
+
+  const showOverlay = useShowOverlayIdle({
+    elementRef: containerRef,
+  });
 
   const videoRef = useCallback(
     async (videoElement: HTMLVideoElement) => {
@@ -130,31 +144,70 @@ function VideoPlayer({ url, title, onTitleBugClick }: Props) {
           play();
         }
 
-        shakPlayer.addEventListener("pause", setIsPaused);
-        shakPlayer.addEventListener("play", unSetIsPaused);
-        shakPlayer.addEventListener("loadeddata", onLoadedData);
+        videoElement.addEventListener("pause", setIsPaused);
+        videoElement.addEventListener("play", unSetIsPaused);
+        videoElement.addEventListener("loadeddata", onLoadedData);
       }
     },
-
     [onLoadedData, setIsPaused, unSetIsPaused, url]
   );
 
-  /* don't need this since we are using SSR and not SPA
+  // custom spinner ui
   useEffect(() => {
+    if (isPlayerLoaded) {
+      const match = containerRef.current!.getElementsByClassName(
+        "shaka-spinner-container"
+      );
+
+      if (match.length > 0) {
+        setSpinnerContainerRef(match[0] as HTMLDivElement);
+      }
+    }
+  }, [isPlayerLoaded]);
+
+  //don't need this since we are using SSR and not SPA
+  /*useEffect(() => {
     return () => {
-      console.log("calling cleanup", player);
-      player?.removeEventListener("pause", setIsPaused);
-      player?.removeEventListener("play", unSetIsPaused);
-      player?.removeEventListener("loadeddata", onLoadedData);
-      player?.destroy();
+      console.log("calling cleanup", videoElementRef);
+      videoElementRef?.removeEventListener("pause", setIsPaused);
+      videoElementRef?.removeEventListener("play", unSetIsPaused);
+      videoElementRef?.removeEventListener("loadeddata", onLoadedData);
+      //videoElementRef?.destroy();
     };
-  }, [onLoadedData, player, setIsPaused, unSetIsPaused]);
-  */
+  }, [onLoadedData, videoElementRef, setIsPaused, unSetIsPaused]);*/
 
   return (
-    <div ref={containerRef}>
-      <video ref={videoRef} autoPlay />
-    </div>
+    <>
+      <OverlayLoader loading={!isPlayerLoaded} />
+      <div
+        className={cn(
+          "video-player-container relative flex items-center w-full opacity-0 transition-[opacity] duration-[200ms] ease-in-out",
+          isPlayerLoaded && "opacity-100"
+        )}
+        ref={containerRef}
+      >
+        <video
+          className="w-max-[100%] w-full h-max-[100%]"
+          ref={videoRef}
+          autoPlay
+        />
+        {isPlayerLoaded && spinnerContainerRef && (
+          <CreatePortal portalContainerRef={spinnerContainerRef}>
+            <Loader loading={true} />
+          </CreatePortal>
+        )}
+        <CreatePortal portalContainerRef={containerRef.current!}>
+          <div
+            className={cn(
+              `w-full h-full absolute top-0 bg-[rgba(0,0,0,.4)] opacity-0 transition-[opacity] duration-[250ms] ease-in-out`,
+              (showOverlay || videoPaused) && "opacity-100"
+            )}
+          >
+            <TitleBug title={title} titleId={titleId} />
+          </div>
+        </CreatePortal>
+      </div>
+    </>
   );
 }
 

@@ -16,14 +16,15 @@ function BackgroundImage({ imagePath, alt }: Props) {
 
   return (
     <div
+      style={{ opacity: bgOpacity }}
       className={cn(
-        `fixed inset-0 -z-10 opacity-[${bgOpacity * 100}] invisible`,
+        `fixed inset-0 -z-10 invisible`,
         isImageLoaded && "animate-[fadeIn_450ms_ease-in] visible"
       )}
     >
       <div className="relative">
         <Image
-          className="w-screen	"
+          className="w-screen"
           src={imagePath}
           alt={alt}
           width={1920}
