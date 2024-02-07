@@ -1,5 +1,6 @@
-import { Brand } from "@/lib/types";
 import { type NextRequest } from "next/server";
+
+import { Brand } from "@/lib/types";
 
 const Brands = [
   {

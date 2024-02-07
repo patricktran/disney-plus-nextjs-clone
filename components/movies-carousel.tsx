@@ -1,7 +1,9 @@
 import Link from "next/link";
+
 import { Movie } from "@/lib/types";
-import MovieCard from "./MovieCard";
 import { cn } from "@/lib/utils";
+
+import MovieCard from "./movie-card";
 
 type Props = {
   title?: string;

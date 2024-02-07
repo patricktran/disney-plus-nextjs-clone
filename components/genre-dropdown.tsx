@@ -1,9 +1,10 @@
-import { getGenres } from "@/lib/getMovies";
-import GenreMenu from "./GenreMenu";
+import { getGenres } from "@/lib/get-movies";
+
+import GenreMenu from "./genre-menu";
 
 async function GenreDropdown() {
   const data = await getGenres();
-  //client component
+  // client component
   return <GenreMenu data={data} />;
 }
 

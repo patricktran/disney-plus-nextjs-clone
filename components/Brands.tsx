@@ -1,5 +1,6 @@
 import { Brand } from "@/lib/types";
-import VideoCard from "./VideoCard";
+
+import VideoCard from "./video-card";
 
 async function Brands() {
   const brands: Brand[] = await fetch(`${process.env.HOST}/api/brands`).then(

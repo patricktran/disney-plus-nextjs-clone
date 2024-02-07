@@ -1,15 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Disney Plus Clone - NextJS
 
-## Getting Started
+> Tech Showcase
 
-First, run the development server:
+Data comes from [TMDB.org](https://www.themoviedb.org/)
+
+> The video player will always play [Big Buck Bunny.](https://en.wikipedia.org/wiki/Big_Buck_Bunny) <br/>
+
+### How to run
 
 ```bash
-npm run dev
-# or
+yarn
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+
+### Features
+
+- NextJS 14
+- React Server-Side Components
+- React Server Actions
+- Shadcn
+- TailwindCSS
+
+## Screens
+
+> Yes, these are actual screenshots from my Display Plus clone app!

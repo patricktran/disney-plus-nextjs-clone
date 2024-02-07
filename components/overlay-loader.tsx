@@ -1,5 +1,6 @@
 "use client";
 import ReactDOM from "react-dom";
+
 import Loader from "./loader";
 
 type Props = {

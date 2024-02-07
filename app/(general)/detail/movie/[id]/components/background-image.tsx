@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
+
 import useScrollPosition from "@react-hook/window-scroll";
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 
 type Props = {

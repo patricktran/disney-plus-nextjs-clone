@@ -1,6 +1,7 @@
-import MoviesCarousel from "@/components/MoviesCarousel";
-import { getDiscoverMovies } from "@/lib/getMovies";
 import React from "react";
+
+import MoviesCarousel from "@/components/movies-carousel";
+import { getDiscoverMovies } from "@/lib/get-movies";
 
 type Props = {
   params: {

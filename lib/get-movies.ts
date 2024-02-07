@@ -11,7 +11,7 @@ async function fetchFromTMDB<T>(url: URL, cacheTime?: number) {
       Authorization: `Bearer ${process.env.TMDB_API_TOKEN}`,
     },
     next: {
-      revalidate: 60 * 60 * 24, //24 hours
+      revalidate: 60 * 60 * 24, // 24 hours
     },
   };
 
@@ -34,7 +34,7 @@ async function fetchMoviesFromTMDB(url: URL, cacheTime?: number) {
       Authorization: `Bearer ${process.env.TMDB_API_TOKEN}`,
     },
     next: {
-      revalidate: cacheTime || 60 * 60 * 24, //24 hours
+      revalidate: cacheTime || 60 * 60 * 24, // 24 hours
     },
   };
 

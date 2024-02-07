@@ -1,7 +1,9 @@
-import MoviesCarousel from "@/components/MoviesCarousel";
-import { getPopularMovies, getSearchedMovies } from "@/lib/getMovies";
-import { notFound } from "next/navigation";
 import React from "react";
+
+import { notFound } from "next/navigation";
+
+import MoviesCarousel from "@/components/movies-carousel";
+import { getPopularMovies, getSearchedMovies } from "@/lib/get-movies";
 
 type Props = {
   params: {

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+
 import "../globals.css";
-import Header from "@/components/Header";
-import HeaderContent from "@/components/HeaderContent";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import Header from "@/components/header";
+import HeaderContent from "@/components/header-content";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "Disney+ Clone",

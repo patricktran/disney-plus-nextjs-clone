@@ -1,17 +1,19 @@
 "use client";
 import { useState } from "react";
+
+import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
 import { Genres } from "@/lib/types";
 
 function GenreMenu({ data }: { data: Genres }) {
-  //need to useState - otherwise clicking the Link in DropdownMenuItem won't close the DropdownMenu
+  // need to useState - otherwise clicking the Link in DropdownMenuItem won't close the DropdownMenu
   const [open, setOpen] = useState(false);
 
   return (
@@ -21,14 +23,15 @@ function GenreMenu({ data }: { data: Genres }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="h-80 overflow-y-auto scrollbar-hide">
         {data.genres.map((genre) => (
-          <DropdownMenuItem key={genre.id} onClick={() => setOpen(false)}>
-            <Link
-              className="w-full block"
-              href={`/genre/${genre.id}?genre=${genre.name}`}
-            >
+          <Link
+            key={genre.id}
+            className="w-full block"
+            href={`/genre/${genre.id}?genre=${genre.name}`}
+          >
+            <DropdownMenuItem onClick={() => setOpen(false)}>
               {genre.name}
-            </Link>
-          </DropdownMenuItem>
+            </DropdownMenuItem>
+          </Link>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>

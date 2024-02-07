@@ -1,6 +1,7 @@
 "use client";
 
 import useScrollPosition from "@react-hook/window-scroll";
+
 import { cn } from "@/lib/utils";
 
 const threshold = 10;

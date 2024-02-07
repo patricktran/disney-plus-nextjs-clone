@@ -1,7 +1,8 @@
-import Link from "next/link";
 import Image from "next/image";
-import SearchInput from "./SearchInput";
-import GenreDropdown from "./GenreDropdown";
+import Link from "next/link";
+
+import GenreDropdown from "./genre-dropdown";
+import SearchInput from "./search-input";
 
 /**
  * This is a server component with other server components.

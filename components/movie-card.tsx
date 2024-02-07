@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { Movie } from "@/lib/types";
 import { getImagePath, cn } from "@/lib/utils";
 type Size = "medium" | "large";

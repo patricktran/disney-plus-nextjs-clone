@@ -1,9 +1,11 @@
-import Link from "next/link";
-import { getMovieDetail } from "@/lib/getMovies";
-import { getImagePath } from "@/lib/utils";
-import BackgroundImage from "./components/BackgroundImage";
-import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+import { getMovieDetail } from "@/lib/get-movies";
+import { getImagePath } from "@/lib/utils";
+
+import BackgroundImage from "./components/background-image";
 
 type Props = {
   params: {
@@ -52,7 +54,7 @@ async function Detail({ params: { id } }: Props) {
         <p className="pt-10 max-w-xl text-xl text-shadow shadow-gray-900 capitalize font-bold italic">
           {details.tagline ?? ""}
         </p>
-        <p className="max-w-xl text-xl text-gray-200 text-shadow shadow-gray-900">
+        <p className="max-w-3xl text-xl text-gray-200 text-shadow shadow-gray-900">
           {details.overview}
         </p>
       </div>

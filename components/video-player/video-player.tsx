@@ -1,22 +1,25 @@
 "use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
+
 import {
   Player as ShakaPlayer,
   polyfill as ShakaPolyfill,
   ui as ShakaUI,
   // @ts-ignore
 } from "shaka-player/dist/shaka-player.ui";
-import { cn } from "@/lib/utils";
-import useShowOverlayIdle from "./hooks/use-show-overlay-idle";
-import uiConfig from "./config/ui";
-import CreatePortal from "../CreatePortal";
 
+import { cn } from "@/lib/utils";
+
+import CreatePortal from "../create-portal";
 import "shaka-player/dist/controls.css";
 import "shaka-player-ui-controls/dist/main.css";
 import Loader from "../loader";
-import TitleBug from "./title-bug";
 import OverlayLoader from "../overlay-loader";
+
+import uiConfig from "./config/ui";
+import useShowOverlayIdle from "./hooks/use-show-overlay-idle";
+import TitleBug from "./title-bug";
 
 type Props = {
   url: string;
@@ -26,11 +29,11 @@ type Props = {
 
 function VideoPlayer({ url, title, titleId }: Props) {
   const [isPlayerLoaded, setIsPlayerLoaded] = useState(false);
-  /*const [videoElementRef, setVideoElementRef] = useState<
+  /* const [videoElementRef, setVideoElementRef] = useState<
     HTMLVideoElement | undefined
   >(undefined);*/
   const containerRef = useRef<HTMLDivElement>(null);
-  //const [player, setPlayer] = useState<ShakaPlayer>(null);
+  // const [player, setPlayer] = useState<ShakaPlayer>(null);
   // placing inside useState instead of useRef because we want to trigger re-renders
   const [spinnerContainerRef, setSpinnerContainerRef] =
     useState<HTMLDivElement>();
@@ -69,7 +72,7 @@ function VideoPlayer({ url, title, titleId }: Props) {
     }
   }, [url, isVisible]);*/
 
-  /*useEffect(() => {
+  /* useEffect(() => {
     function setIsPaused() {
       setVideoPaused(true);
     }
@@ -165,8 +168,8 @@ function VideoPlayer({ url, title, titleId }: Props) {
     }
   }, [isPlayerLoaded]);
 
-  //don't need this since we are using SSR and not SPA
-  /*useEffect(() => {
+  // don't need this since we are using SSR and not SPA
+  /* useEffect(() => {
     return () => {
       console.log("calling cleanup", videoElementRef);
       videoElementRef?.removeEventListener("pause", setIsPaused);

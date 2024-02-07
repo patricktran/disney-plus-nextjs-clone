@@ -1,5 +1,5 @@
 import VideoPlayer from "@/components/video-player";
-import { getMovieDetail } from "@/lib/getMovies";
+import { getMovieDetail } from "@/lib/get-movies";
 
 type Props = {
   params: {
@@ -9,8 +9,6 @@ type Props = {
 
 async function Video({ params: { id } }: Props) {
   const details = await getMovieDetail(id);
-
-  console.log(details);
 
   return (
     <VideoPlayer

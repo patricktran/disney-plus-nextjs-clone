@@ -1,9 +1,10 @@
 "use client";
-import Link from "next/link";
-import { Movie } from "@/lib/types";
-import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
+import Link from "next/link";
+
+import { Movie } from "@/lib/types";
 import { getImagePath } from "@/lib/utils";
 
 Autoplay.globalOptions = {

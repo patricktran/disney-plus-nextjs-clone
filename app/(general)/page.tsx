@@ -1,12 +1,12 @@
-import BannerCarouselWrapper from "@/components/BannerCarouselWrapper";
-import Brands from "@/components/Brands";
-import MoviesCarousel from "@/components/MoviesCarousel";
+import BannerCarouselWrapper from "@/components/banner-carousel-wrapper";
+import Brands from "@/components/brands";
+import MoviesCarousel from "@/components/movies-carousel";
 import {
   getPopularMovies,
   getTopRatedMovies,
   getTrendingMovies,
   getUpcomingMovies,
-} from "@/lib/getMovies";
+} from "@/lib/get-movies";
 
 export default async function Home() {
   const upcomingMoviesReq = getUpcomingMovies();
