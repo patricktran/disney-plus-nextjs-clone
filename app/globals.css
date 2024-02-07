@@ -86,11 +86,85 @@
       }
       .shaka-bottom-controls {
         position: relative;
-        top: -10px;
+        top: -15px;
+      }
+
+      .shaka-controls-button-panel {
+        position: relative;
+        justify-content: flex-start;
+
+        button {
+          line-height: initial;
+        }
+
+        .shaka-current-time {
+          opacity: 0.8;
+        }
+
+        .shaka-rewind-button,
+        .shaka-small-play-button,
+        .shaka-fast-forward-button,
+        .shaka-mute-button,
+        .shaka-fullscreen-button,
+        button {
+          opacity: 0.6;
+          transition: opacity 0.2s ease;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+        > .material-icons-round {
+          font-size: 36px;
+        }
       }
 
       .shaka-current-time {
         z-index: -1; /*fix hover over bug*/
+      }
+    }
+
+    .shaka-seek-bar-container {
+      height: 3px;
+      width: 98.5%;
+      margin: 10px;
+      top: 42px;
+      position: absolute;
+      transition: all 70ms ease-in;
+
+      /*expand the hoverable area*/
+      &::before {
+        content: "";
+        position: absolute;
+        height: 30px;
+        width: 100%;
+        top: -10px;
+        cursor: pointer;
+      }
+
+      input[type="range"] {
+        cursor: pointer;
+        height: 9px;
+        transition: all 100ms ease-in;
+
+        &::-webkit-slider-thumb {
+          margin-top: 1px;
+        }
+      }
+
+      &:hover {
+        height: 8px;
+
+        input[type="range"] {
+          height: 12px;
+
+          &::-webkit-slider-thumb {
+            margin-top: 0;
+            width: 16px;
+            height: 16px;
+          }
+        }
       }
     }
 
