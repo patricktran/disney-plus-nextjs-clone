@@ -33,7 +33,7 @@ const Brands = [
 const delay = (timeMs: number) => new Promise((res) => setTimeout(res, timeMs));
 
 export async function GET(request: NextRequest) {
-  const fakeDelay = Math.floor(Math.random() * 200) + 50;
+  const fakeDelay = Math.floor(Math.random() * 1000) + 150;
   await delay(fakeDelay);
   return Response.json(Brands);
 }

@@ -79,6 +79,10 @@
 /** end shadcn **/
 
 @layer components {
+  .video-card {
+    @apply relative overflow-hidden pt-[56.25%] bg-gradient-to-b from-[#30323e] to-[#1e1f2a] rounded-lg border-2 border-[#f9f9f9]/10;
+  }
+
   .video-player-container {
     .shaka-controls-container {
       .shaka-scrim-container {

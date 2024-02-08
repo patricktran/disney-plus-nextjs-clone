@@ -29,78 +29,12 @@ type Props = {
 
 function VideoPlayer({ url, title, titleId }: Props) {
   const [isPlayerLoaded, setIsPlayerLoaded] = useState(false);
-  /* const [videoElementRef, setVideoElementRef] = useState<
-    HTMLVideoElement | undefined
-  >(undefined);*/
   const containerRef = useRef<HTMLDivElement>(null);
-  // const [player, setPlayer] = useState<ShakaPlayer>(null);
   // placing inside useState instead of useRef because we want to trigger re-renders
   const [spinnerContainerRef, setSpinnerContainerRef] =
     useState<HTMLDivElement>();
   const [videoPaused, setVideoPaused] = useState(false);
   const [initOverlay, setInitOverlay] = useState(false);
-
-  /* useEffect(() => {
-    if (isVisible) {
-      ShakaPolyfill.installAll();
-      // Initialize shaka player
-      const player = new ShakaPlayer(videoRef.current);
-      setPlayer(player);
-
-      const play = async () => {
-        await player.load(url);
-
-        // Setting up shaka player UI
-        const ui = new ShakaUI.Overlay(
-          player,
-          containerRef.current,
-          videoRef.current
-        );
-
-        ui.configure(uiConfig); // configure UI
-        videoRef.current!.volume = 0.5;
-        videoRef.current!.play();
-      };
-
-      if (player) {
-        play();
-      }
-
-      return () => {
-        player.destroy();
-      };
-    }
-  }, [url, isVisible]);*/
-
-  /* useEffect(() => {
-    function setIsPaused() {
-      setVideoPaused(true);
-    }
-
-    function unSetIsPaused() {
-      setVideoPaused(false);
-    }
-
-    function onLoadedData() {
-      // add fake delay
-      setTimeout(() => {
-        setIsVisible(true);
-        setInitOverlay(true);
-      }, 500);
-    }
-
-    var ref = videoRef.current!;
-
-    ref.addEventListener("pause", setIsPaused);
-    ref.addEventListener("play", unSetIsPaused);
-    ref.addEventListener("loadeddata", onLoadedData);
-
-    return () => {
-      ref.removeEventListener("pause", setIsPaused);
-      ref.removeEventListener("play", unSetIsPaused);
-      ref.removeEventListener("loadeddata", onLoadedData);
-    };
-  });*/
 
   const setIsPaused = useCallback(() => {
     setVideoPaused(true);
@@ -184,7 +118,7 @@ function VideoPlayer({ url, title, titleId }: Props) {
       <OverlayLoader loading={!isPlayerLoaded} />
       <div
         className={cn(
-          "video-player-container relative flex items-center w-full opacity-0 transition-[opacity] duration-[200ms] ease-in-out",
+          "video-player-container relative flex items-center w-full opacity-0 transition-[opacity] duration-200 ease-in-out",
           isPlayerLoaded && "opacity-100"
         )}
         ref={containerRef}
