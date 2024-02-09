@@ -1,7 +1,7 @@
 import React from "react";
 
-import MoviesCarousel from "@/components/movies-carousel";
-import { getDiscoverMovies } from "@/lib/get-movies";
+import MediaCarousel from "@/components/media-carousel";
+import { getDiscoverMovies } from "@/lib/get-media";
 
 type Props = {
   params: {
@@ -18,7 +18,7 @@ async function Genre({ params: { id }, searchParams: { genre } }: Props) {
   return (
     <>
       <h1 className="text-6xl font-bold px-10">Results for {genre}</h1>
-      <MoviesCarousel title="Genre" movies={movies} isVertical />
+      <MediaCarousel title="Genre" media={movies} isVertical />
     </>
   );
 }

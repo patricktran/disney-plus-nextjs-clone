@@ -1,4 +1,4 @@
-import { getGenres } from "@/lib/get-movies";
+import { getGenres } from "@/lib/get-media";
 
 import GenreMenu from "./genre-menu";
 

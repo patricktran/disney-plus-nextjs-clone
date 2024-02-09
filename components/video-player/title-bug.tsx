@@ -3,13 +3,14 @@ import Link from "next/link";
 type Props = {
   titleId: number;
   title: string;
+  type: "movie" | "tv";
 };
 
-function TitleBug({ titleId, title }: Props) {
+function TitleBug({ titleId, title, type }: Props) {
   return (
     <Link
       className="relative z-[100] inline-flex items-center gap-3 opacity-60 pt-5 pr-3 pb-3 pl-6 hover:opacity-100 hover:cursor-pointer"
-      href={`/detail/movie/${titleId}`}
+      href={`/detail/${type}/${titleId}`}
     >
       <span
         className="relative before:relative 
@@ -25,21 +26,3 @@ function TitleBug({ titleId, title }: Props) {
 }
 
 export default TitleBug;
-
-/*
-  const CaretBack = styled.div`
-  position: relative;
-
-  &:before {
-    border-style: solid;
-    border-width: 3px 3px 0 0;
-    content: "";
-    display: inline-block;
-    position: relative;
-    vertical-align: top;
-    width: 17px;
-    height: 17px;
-    left: 3px;
-    transform: rotate(-135deg);
-  }
-*/

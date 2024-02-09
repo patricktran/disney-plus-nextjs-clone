@@ -1,4 +1,11 @@
-import { Genres, SearchResults, MovieDetail } from "./types";
+import {
+  Genres,
+  SearchResults,
+  MovieDetail,
+  TvSearchResults,
+  TvDetail,
+  SeasonDetail,
+} from "./types";
 
 const baseUrl = "https://api.themoviedb.org/3";
 type GenreId = string;
@@ -23,7 +30,10 @@ async function fetchFromTMDB<T>(url: URL, cacheTime?: number) {
 async function fetchMoviesFromTMDB(url: URL, cacheTime?: number) {
   url.searchParams.set("include_adult", "false");
   url.searchParams.set("include_video", "false");
-  url.searchParams.set("sort_by", "popularity.desc");
+
+  if (!url.searchParams.get("sort_by"))
+    url.searchParams.set("sort_by", "popularity.desc");
+
   url.searchParams.set("language", "en-US");
   url.searchParams.set("page", "1");
 
@@ -64,7 +74,6 @@ export function getDiscoverMovies(id?: GenreId, keywords?: string) {
 
   keywords && url.searchParams.set("with_keywords", keywords);
   id && url.searchParams.set("with_genres", id);
-
   return fetchMoviesFromTMDB(url);
 }
 
@@ -83,5 +92,22 @@ export function getGenres() {
 export function getMovieDetail(id: string) {
   return fetchFromTMDB<MovieDetail>(
     new URL(`${baseUrl}/movie/${id}?language=en-US`)
+  );
+}
+
+export async function getTrendingTvShows(timeWindow: "day" | "week" = "day") {
+  const res = await fetchFromTMDB<TvSearchResults>(
+    new URL(`${baseUrl}/trending/tv/${timeWindow}?language=en-US`)
+  );
+  return res.results;
+}
+
+export function getTvDetail(id: string) {
+  return fetchFromTMDB<TvDetail>(new URL(`${baseUrl}/tv/${id}?language=en-US`));
+}
+
+export function getTvSeason(tvSeriesId: number, season: number) {
+  return fetchFromTMDB<SeasonDetail>(
+    new URL(`${baseUrl}/tv/${tvSeriesId}/season/${season}?language=en-US`)
   );
 }

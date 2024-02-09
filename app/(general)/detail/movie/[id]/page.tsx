@@ -1,11 +1,11 @@
 import { Play } from "lucide-react";
+import { Plus, Users } from "lucide-react";
 import Link from "next/link";
 
+import BackgroundImage from "@/components/background-image";
 import { Button } from "@/components/ui/button";
-import { getMovieDetail } from "@/lib/get-movies";
+import { getMovieDetail } from "@/lib/get-media";
 import { getImagePath } from "@/lib/utils";
-
-import BackgroundImage from "./components/background-image";
 
 type Props = {
   params: {
@@ -29,13 +29,17 @@ async function Detail({ params: { id } }: Props) {
         <h1 className="text-5xl font-bold max-w-xl text-shadow-sm shadow-gray-900">
           {details.title}
         </h1>
-        <p className="text-sm max-w-xl text-shadow shadow-gray-900 flex flex-row gap-1.5 items-center">
-          {releaseYear}{" "}
-          <span className="rounded-full h-1.5 w-1.5 bg-white"></span>{" "}
-          {genres.join(", ")}
-        </p>
-        <div className="pt-6 flex gap-6">
-          <Link href={`/video/${id}`}>
+        <div className="text-sm max-w-xl text-shadow shadow-gray-900 flex flex-row gap-1.5 items-center">
+          <span>{releaseYear}</span>
+          {genres.length && (
+            <>
+              <span className="rounded-full h-1.5 w-1.5 bg-white"></span>
+              <span>{genres.join(", ")}</span>
+            </>
+          )}
+        </div>
+        <div className="pt-6 flex gap-6 items-center">
+          <Link href={`/video/movie/${id}`}>
             <Button
               className="flex gap-1.5 items-center text-base font-light"
               size={"lg"}
@@ -50,6 +54,16 @@ async function Detail({ params: { id } }: Props) {
           >
             <Play fill="#fff" /> TRAILER
           </Button>
+          <Plus
+            className="bg-black/60 ring-1 rounded-full ring-white"
+            size={38}
+            strokeWidth={1}
+          />
+          <Users
+            className="bg-black/60 ring-1 rounded-full ring-white"
+            size={38}
+            strokeWidth={1}
+          />
         </div>
         <p className="pt-10 max-w-xl text-xl text-shadow shadow-gray-900 capitalize font-bold italic">
           {details.tagline ?? ""}

@@ -11,11 +11,8 @@ type Props = {
 const OverlayLoader = ({ loading, children = null }: Props) => {
   return loading ? (
     ReactDOM.createPortal(
-      <div className="w-full h-full absolute z-[5000] left-0 top-0">
-        <Loader
-          className="absolute h-screen bg-[rgba(0,0,0,0.5]"
-          loading={true}
-        />
+      <div className="w-full h-full absolute z-[5000] left-0 top-0 bg-[rgba(0,0,0,0.5]">
+        <Loader className="absolute h-screen" loading={true} />
       </div>,
       window.document.getElementById("overlay-root") ?? window.document.body
     )

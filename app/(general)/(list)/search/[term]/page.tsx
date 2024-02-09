@@ -2,8 +2,8 @@ import React from "react";
 
 import { notFound } from "next/navigation";
 
-import MoviesCarousel from "@/components/movies-carousel";
-import { getPopularMovies, getSearchedMovies } from "@/lib/get-movies";
+import MediaCarousel from "@/components/media-carousel";
+import { getPopularMovies, getSearchedMovies } from "@/lib/get-media";
 
 type Props = {
   params: {
@@ -21,8 +21,8 @@ async function SearchPage({ params: { term } }: Props) {
   return (
     <>
       <h1 className="text-6xl font-bold px-10">Results for {termToUse}</h1>
-      <MoviesCarousel title="Movies" movies={movies} isVertical />
-      <MoviesCarousel title="You may also like" movies={popularMovies} />
+      <MediaCarousel title="Movies" media={movies} isVertical />
+      <MediaCarousel title="You may also like" media={popularMovies} />
     </>
   );
 }

@@ -25,16 +25,16 @@ type Props = {
   url: string;
   titleId: number;
   title: string;
+  type: "movie" | "tv";
 };
 
-function VideoPlayer({ url, title, titleId }: Props) {
+function VideoPlayer({ url, title, titleId, type }: Props) {
   const [isPlayerLoaded, setIsPlayerLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   // placing inside useState instead of useRef because we want to trigger re-renders
   const [spinnerContainerRef, setSpinnerContainerRef] =
     useState<HTMLDivElement>();
   const [videoPaused, setVideoPaused] = useState(false);
-  const [initOverlay, setInitOverlay] = useState(false);
 
   const setIsPaused = useCallback(() => {
     setVideoPaused(true);
@@ -48,7 +48,6 @@ function VideoPlayer({ url, title, titleId }: Props) {
     // add fake delay
     setTimeout(() => {
       setIsPlayerLoaded(true);
-      setInitOverlay(true);
     }, 500);
   }, []);
 
@@ -140,7 +139,7 @@ function VideoPlayer({ url, title, titleId }: Props) {
               (showOverlay || videoPaused) && "opacity-100"
             )}
           >
-            <TitleBug title={title} titleId={titleId} />
+            <TitleBug title={title} titleId={titleId} type={type} />
           </div>
         </CreatePortal>
       </div>

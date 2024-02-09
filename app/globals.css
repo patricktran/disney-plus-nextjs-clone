@@ -83,6 +83,10 @@
     @apply relative overflow-hidden pt-[56.25%] bg-gradient-to-b from-[#30323e] to-[#1e1f2a] rounded-lg border-2 border-[#f9f9f9]/10;
   }
 
+  .episode-carousel-container {
+    @apply flex pt-5 px-10 space-x-6 overflow-scroll pb-12 scrollbar-hide snap-mandatory snap-x;
+  }
+
   .video-player-container {
     .shaka-controls-container {
       .shaka-scrim-container {

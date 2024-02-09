@@ -1,5 +1,5 @@
 import VideoPlayer from "@/components/video-player";
-import { getMovieDetail } from "@/lib/get-movies";
+import { getMovieDetail } from "@/lib/get-media";
 
 type Props = {
   params: {
@@ -15,6 +15,7 @@ async function Video({ params: { id } }: Props) {
       titleId={details.id}
       title={details.title}
       url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+      type="movie"
     />
   );
 }

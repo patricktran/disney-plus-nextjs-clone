@@ -29,6 +29,7 @@
     "react-hook-form": "^7.49.3",
     "shaka-player": "^4.7.9",
     "shaka-player-ui-controls": "^1.0.11",
+    "swr": "^2.2.4",
     "tailwind-merge": "^2.2.0",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss-animate": "^1.0.7",

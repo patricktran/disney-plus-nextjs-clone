@@ -1,6 +1,7 @@
 import { type NextRequest } from "next/server";
 
 import { Brand } from "@/lib/types";
+import { delay } from "@/lib/utils";
 
 const Brands = [
   {
@@ -29,8 +30,6 @@ const Brands = [
     videoPath: `${process.env.HOST}/videos/nat-geo.mp4`,
   },
 ] as Brand[];
-
-const delay = (timeMs: number) => new Promise((res) => setTimeout(res, timeMs));
 
 export async function GET(request: NextRequest) {
   const fakeDelay = Math.floor(Math.random() * 1000) + 150;
