@@ -20,18 +20,19 @@ const Brands = [
     videoPath: `${process.env.HOST}/videos/marvel.mp4`,
   },
   {
-    id: "starwars",
+    id: "star wars",
     imagePath: `${process.env.HOST}/brands/star-wars-brand.png`,
     videoPath: `${process.env.HOST}/videos/star-wars.mp4`,
   },
   {
-    id: "natgeo",
+    id: "national geographic",
     imagePath: `${process.env.HOST}/brands/nat-geo-brand.png`,
     videoPath: `${process.env.HOST}/videos/nat-geo.mp4`,
   },
 ] as Brand[];
 
 export async function GET(request: NextRequest) {
+  console.log(request.url);
   const fakeDelay = Math.floor(Math.random() * 1000) + 150;
   await delay(fakeDelay);
   return Response.json(Brands);

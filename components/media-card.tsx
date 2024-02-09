@@ -6,15 +6,15 @@ type Size = "small" | "medium" | "large";
 type Props = {
   media: {
     id: number;
-    title: string;
+    title?: string;
     overview?: string;
     imagePath?: string;
   };
   size?: Size;
-  displayMode?: "simple" | "episode";
+  displayMode?: "card" | "episode";
 };
 
-function MediaCard({ media, size = "medium", displayMode = "simple" }: Props) {
+function MediaCard({ media, size = "medium", displayMode = "card" }: Props) {
   return (
     <div
       className={cn(
@@ -26,12 +26,12 @@ function MediaCard({ media, size = "medium", displayMode = "simple" }: Props) {
       <div
         className={cn(
           "absolute z-10 inset-0",
-          displayMode === "simple" &&
+          displayMode === "card" &&
             "bg-gradient-to-b from-gray-200/0 via-gray-900/10 to-gray-300 dark:to-dark-background/80"
         )}
       />
-      {displayMode === "simple" && (
-        <p className="absolute z-20 bottom-5 left-5 text-shadow-sm shadow-gray-900">
+      {displayMode === "card" && media.title && (
+        <p className="absolute z-20 bottom-5 left-5 text-shadow-sm shadow-gray-900 w-11/12">
           {media.title}
         </p>
       )}
@@ -42,7 +42,7 @@ function MediaCard({ media, size = "medium", displayMode = "simple" }: Props) {
           size === "large" && "min-w-[375px] h-48"
         )}
         src={getImagePath(media.imagePath)}
-        alt={media.title}
+        alt={media.title ?? ""}
         width={1920}
         height={1080}
         key={media.id}

@@ -31,7 +31,7 @@ async function Detail({ params: { id } }: Props) {
         </h1>
         <div className="text-sm max-w-xl text-shadow shadow-gray-900 flex flex-row gap-1.5 items-center">
           <span>{releaseYear}</span>
-          {genres.length && (
+          {genres.length > 0 && (
             <>
               <span className="rounded-full h-1.5 w-1.5 bg-white"></span>
               <span>{genres.join(", ")}</span>

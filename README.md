@@ -2,7 +2,7 @@
 
 > Tech Showcase
 
-Data comes from [TMDB.org](https://www.themoviedb.org/)
+Data comes from TheMovieDatabase - [TMDB.org](https://www.themoviedb.org/)
 
 > The video player will always play [Big Buck Bunny.](https://en.wikipedia.org/wiki/Big_Buck_Bunny) <br/>
 
@@ -31,23 +31,32 @@ yarn dev
 - NextJS 14
 - React Server-Side Components
 - React Server Actions
-- Shadcn
+- Shadcn/Radix-iu
 - TailwindCSS
+- Shakra Player
 
 ## Screens
 
-> Yes, these are actual screenshots from my Display Plus Clone app!
+#### Homepage
 
 ![screenshot](/disney-plus-clone-home.png?raw=true)
 
-<br />
+#### Movie Details
 
 ![screenshot](/disney-plus-clone-movie-detail.png?raw=true)
+
+#### TV Series Details
+
+![screenshot](/disney-plus-clone-tv-detail2.png?raw=true)
 
 <br />
 
 ![screenshot](/disney-plus-clone-tv-detail.png?raw=true)
 
-<br />
+#### Video Player
 
 ![screenshot](/disney-plus-clone-video-player.png?raw=true)
+
+#### Search Results
+
+![screenshot](/disney-plus-clone-search.png?raw=true)

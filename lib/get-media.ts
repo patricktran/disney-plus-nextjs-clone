@@ -66,7 +66,7 @@ export function getPopularMovies() {
 }
 
 export function getTrendingMovies() {
-  return fetchMoviesFromTMDB(new URL(`${baseUrl}/trending/movie/week`));
+  return fetchMoviesFromTMDB(new URL(`${baseUrl}/trending/movie/day`));
 }
 
 export function getDiscoverMovies(id?: GenreId, keywords?: string) {

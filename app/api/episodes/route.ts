@@ -3,6 +3,9 @@ import { type NextRequest } from "next/server";
 import { getTvSeason } from "@/lib/get-media";
 import { delay } from "@/lib/utils";
 
+/**
+ * This next api route is created so that it can be called by a client-component without throwing a CORs error
+ */
 export async function GET(request: NextRequest) {
   const fakeDelay = Math.floor(Math.random() * 1000);
   await delay(fakeDelay < 500 ? 500 : fakeDelay);
