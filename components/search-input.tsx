@@ -13,7 +13,6 @@ import { submitSearchAction } from "@/server/actions";
 import { Form, FormControl, FormField, FormItem } from "./ui/form";
 import { Input } from "./ui/input";
 
-
 function SearchInput() {
   // const router = useRouter();
   const pathname = usePathname();
@@ -48,7 +47,7 @@ function SearchInput() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((data) => submitSearch(data))}
-        className="space-y-8"
+        className="relative"
       >
         <FormField
           control={form.control}
@@ -56,11 +55,20 @@ function SearchInput() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Search..." {...field} />
+                <Input
+                  placeholder="Search..."
+                  {...field}
+                  disabled={status === "executing"}
+                />
               </FormControl>
             </FormItem>
           )}
         />
+        {status === "executing" && (
+          <span className="absolute h-2 w-2 right-3 top-4 z-10">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-800 opacity-75"></span>
+          </span>
+        )}
       </form>
     </Form>
   );
