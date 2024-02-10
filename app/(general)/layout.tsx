@@ -8,6 +8,11 @@ import { ThemeProvider } from "@/components/theme-provider";
 export const metadata: Metadata = {
   title: "Disney+ Clone",
   description: "Built with NextJS",
+  appLinks: {
+    web: {
+      url: "https://github.com/patricktran/disney-plus-nextjs-clone",
+    },
+  },
 };
 
 export default function RootLayout({

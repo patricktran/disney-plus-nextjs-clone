@@ -1,4 +1,5 @@
-import { Play } from "lucide-react";
+import { Play, Plus, Users } from "lucide-react";
+import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 
 import BackgroundImage from "@/components/background-image";
@@ -63,6 +64,16 @@ async function TvDetail({ params: { id } }: Props) {
             >
               <Play fill="#fff" /> TRAILER
             </Button>
+            <Plus
+              className="bg-black/60 ring-1 rounded-full ring-white"
+              size={38}
+              strokeWidth={1}
+            />
+            <Users
+              className="bg-black/60 ring-1 rounded-full ring-white"
+              size={38}
+              strokeWidth={1}
+            />
           </div>
           <p className="pt-10 max-w-xl text-xl text-shadow shadow-gray-900 capitalize font-bold italic">
             {details.tagline ?? ""}
@@ -82,6 +93,19 @@ async function TvDetail({ params: { id } }: Props) {
       </div>
     </main>
   );
+}
+
+export async function generateMetadata(
+  { params: { id } }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // dont worry about calling this fetch again - nextjs dedups/caches
+  const details = await getTvDetail(id);
+
+  return {
+    title: `${details.name} - ${(await parent).title?.absolute}`,
+    description: details.overview,
+  };
 }
 
 export default TvDetail;
