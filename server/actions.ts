@@ -17,7 +17,7 @@ export const submitSearchAction = action(formSearchSchema, async (values) => {
   // values be type-safe and validated.
   console.log("Hi, I am a server action", values);
   // Do something with the form values on the server side.
-  await delay(500);
+  await delay(250);
   redirect(getSearchLink(values.input));
 });
 

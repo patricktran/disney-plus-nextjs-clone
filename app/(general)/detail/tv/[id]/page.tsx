@@ -1,3 +1,5 @@
+import { Metadata, ResolvingMetadata } from "next";
+
 import BackgroundImage from "@/components/background-image";
 import { getTvDetail } from "@/lib/get-media";
 import { getImagePath } from "@/lib/utils";
@@ -32,6 +34,19 @@ async function TvDetail({ params: { id } }: Props) {
       </div>
     </main>
   );
+}
+
+export async function generateMetadata(
+  { params: { id } }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // dont worry about calling this fetch again - nextjs dedups/caches
+  const details = await getTvDetail(id);
+
+  return {
+    title: `${details.name} - ${(await parent).title?.absolute}`,
+    description: details.overview,
+  };
 }
 
 export default TvDetail;
