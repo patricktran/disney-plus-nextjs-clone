@@ -62,12 +62,13 @@ export type TV = {
   vote_count: number;
 };
 
-export type MovieDetail = Omit<Movie, "genre_ids"> & {
+export type MovieDetail = Omit<Movie, "genre_ids" | "media_type"> & {
   genres: Genre[];
   runtime: number;
   revenue: number;
   status: string;
   tagline: string;
+  media_type: "movie";
 };
 
 export type TvDetail = Omit<TV, "genre_ids"> & {
@@ -77,6 +78,7 @@ export type TvDetail = Omit<TV, "genre_ids"> & {
   status: string;
   tagline: string;
   type: string;
+  media_type: "tv";
 };
 
 export type Season = {

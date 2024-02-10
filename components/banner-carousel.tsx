@@ -4,6 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { getMovieDetailLink } from "@/lib/nav";
 import { Movie } from "@/lib/types";
 import { getImagePath } from "@/lib/utils";
 
@@ -21,7 +22,7 @@ function BannerCarousel({ movies }: { movies: Movie[] }) {
       <div className="flex animate-[fadeIn_450ms_ease-in]">
         {movies.map((movie) => (
           <div key={movie.id} className="flex-full min-w-0 relative">
-            <Link href={`/detail/movie/${movie.id}`}>
+            <Link href={getMovieDetailLink(movie.id)}>
               <div className="relative">
                 <Image
                   className="w-full"

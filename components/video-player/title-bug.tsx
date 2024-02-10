@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { getMovieDetailLink, getTvDetailLink } from "@/lib/nav";
+
 type Props = {
   titleId: number;
   title: string;
@@ -10,7 +12,11 @@ function TitleBug({ titleId, title, type }: Props) {
   return (
     <Link
       className="relative z-[100] inline-flex items-center gap-3 opacity-60 pt-5 pr-3 pb-3 pl-6 hover:opacity-100 hover:cursor-pointer"
-      href={`/detail/${type}/${titleId}`}
+      href={
+        type === "movie"
+          ? getMovieDetailLink(titleId)
+          : getTvDetailLink(titleId)
+      }
     >
       <span
         className="relative before:relative 

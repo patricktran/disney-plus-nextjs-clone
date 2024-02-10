@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { getMovieDetailLink, getTvDetailLink } from "@/lib/nav";
 import { Movie, TV } from "@/lib/types";
 import { cn, isMovie } from "@/lib/utils";
 
@@ -26,7 +27,7 @@ function MediaCarousel({ title, media, isVertical }: Props) {
               <Link
                 key={m.id}
                 href={
-                  isMovie(m) ? `/detail/movie/${m.id}` : `/detail/tv/${m.id}`
+                  isMovie(m) ? getMovieDetailLink(m.id) : getTvDetailLink(m.id)
                 }
                 className="flex flex-col space-y-8 mb-5 items-start lg:flex-row space-x-5"
               >
@@ -57,7 +58,7 @@ function MediaCarousel({ title, media, isVertical }: Props) {
                 className="snap-center snap-always"
                 key={m.id}
                 href={
-                  isMovie(m) ? `/detail/movie/${m.id}` : `/detail/tv/${m.id}`
+                  isMovie(m) ? getMovieDetailLink(m.id) : getTvDetailLink(m.id)
                 }
               >
                 <MediaCard

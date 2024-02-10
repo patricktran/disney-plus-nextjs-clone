@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { getGenreLink } from "@/lib/nav";
 import { Genres } from "@/lib/types";
 
 function GenreMenu({ data }: { data: Genres }) {
@@ -26,7 +27,7 @@ function GenreMenu({ data }: { data: Genres }) {
           <Link
             key={genre.id}
             className="w-full block"
-            href={`/genre/${genre.id}?genre=${genre.name}`}
+            href={getGenreLink(genre.id, genre.name)}
           >
             <DropdownMenuItem onClick={() => setOpen(false)}>
               {genre.name}

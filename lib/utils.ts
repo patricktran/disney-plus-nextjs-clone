@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { Movie, TV } from "./types";
+import { Movie, MovieDetail, TV, TvDetail } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -15,6 +15,12 @@ export function getImagePath(imagePath?: string, fullSize?: boolean) {
 
 export function isMovie(media: Movie | TV): media is Movie {
   return media.media_type === "movie" || !media.media_type; // assume movie by default
+}
+
+export function isMovieDetails(
+  media: MovieDetail | TvDetail
+): media is MovieDetail {
+  return "title" in media;
 }
 
 export const delay = (timeMs: number) =>

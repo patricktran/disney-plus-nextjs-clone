@@ -1,6 +1,10 @@
 "use server";
 import { redirect } from "next/navigation";
+
+import { getSearchLink } from "@/lib/nav";
+
 import { FormSearchFields, formSearchSchema } from "../lib/forms";
+
 import { action } from "./safe-action";
 
 /**
@@ -12,7 +16,7 @@ export const submitSearchAction = action(formSearchSchema, async (values) => {
   console.log("Hi, I am a server action", values);
   // Do something with the form values on the server side.
   // This will be type-safe and validated.
-  redirect(`/search/${values.input}`);
+  redirect(getSearchLink(values.input));
 });
 
 /**
