@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Metadata, ResolvingMetadata } from "next";
-
 import MediaCarousel from "@/components/media-carousel";
 import { getDiscoverMovies } from "@/lib/get-media";
 
@@ -23,15 +21,6 @@ async function Genre({ params: { id }, searchParams: { genre } }: Props) {
       <MediaCarousel title="Genre" media={movies} isVertical />
     </>
   );
-}
-
-export async function generateMetadata(
-  { searchParams: { genre } }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  return {
-    title: `Results for ${genre} - ${(await parent).title?.absolute}`,
-  };
 }
 
 export default Genre;

@@ -28,17 +28,4 @@ async function Detail({ params: { id } }: Props) {
   );
 }
 
-export async function generateMetadata(
-  { params: { id } }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  // dont worry about calling this fetch again - nextjs dedups/caches
-  const details = await getMovieDetail(id);
-
-  return {
-    title: `${details.title} - ${(await parent).title?.absolute}`,
-    description: details.overview,
-  };
-}
-
 export default Detail;

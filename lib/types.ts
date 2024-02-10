@@ -68,10 +68,9 @@ export type MovieDetail = Omit<Movie, "genre_ids" | "media_type"> & {
   revenue: number;
   status: string;
   tagline: string;
-  media_type: "movie";
 };
 
-export type TvDetail = Omit<TV, "genre_ids"> & {
+export type TvDetail = Omit<TV, "genre_ids" | "media_type"> & {
   number_of_seasons: number;
   seasons: Season[];
   genres: Genre[];

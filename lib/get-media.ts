@@ -54,7 +54,20 @@ async function fetchMoviesFromTMDB(url: URL, cacheTime?: number) {
 }
 
 export function getUpcomingMovies() {
-  return fetchMoviesFromTMDB(new URL(`${baseUrl}/movie/upcoming`));
+  const url = new URL(`${baseUrl}/discover/movie`);
+  url.searchParams.set("certification_country", "US");
+  url.searchParams.set("region", "US");
+  url.searchParams.set(
+    "release_date.gte",
+    new Date().toISOString().replace(/T.*/, "").split("-").join("-")
+  );
+  url.searchParams.set("vote_average.gte", "0");
+
+  url.searchParams.set("vote_count.gte", "0");
+  url.searchParams.set("watch_region", "US");
+  url.searchParams.set("with_release_type", "3");
+  url.searchParams.set("with_runtime.gte", "0");
+  return fetchMoviesFromTMDB(url);
 }
 
 export function getTopRatedMovies() {

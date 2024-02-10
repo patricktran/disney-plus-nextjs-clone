@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 
 import MediaCarousel from "@/components/media-carousel";
@@ -26,15 +25,6 @@ async function SearchPage({ params: { term } }: Props) {
       <MediaCarousel title="You may also like" media={popularMovies} />
     </>
   );
-}
-
-export async function generateMetadata(
-  { params: { term } }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  return {
-    title: `Results for ${decodeURI(term)} - ${(await parent).title?.absolute}`,
-  };
 }
 
 export default SearchPage;

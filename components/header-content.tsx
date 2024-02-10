@@ -17,6 +17,7 @@ function HeaderContent() {
           width={120}
           height={51}
           className="cursor-pointer invert-0 dark:invert"
+          priority
         />
       </Link>
       <div className="flex space-x-2">

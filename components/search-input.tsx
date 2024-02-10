@@ -55,11 +55,7 @@ function SearchInput() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input
-                  placeholder="Search..."
-                  {...field}
-                  disabled={status === "executing"}
-                />
+                <Input placeholder="Search..." {...field} />
               </FormControl>
             </FormItem>
           )}
